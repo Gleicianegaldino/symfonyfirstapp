@@ -7,14 +7,14 @@ categoria:
     path: /categoria
     controller: App\Controller\CategoriaController::index
 
+categoriaadicionar:
+    path: /categoriaadicionar
+    controller: App\Controller\CategoriaController::adicionar
+
 produto:
     path: /produto
     controller: App\Controller\ProdutoController::index
 
-categoriaadicionar:
-    path: /categoriaadicionar
-    controller: App\Controller\CategoriaController::adicionar
-    
 produtoadicionar:
     path: /produtoadicionar
     controller: App\Controller\ProdutoController::adicionar

@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+
+
 class ProdutoController extends AbstractController
 {
     public function index(EntityManagerInterface $em, CategoriaRepository $categoriaRepository)
@@ -26,7 +28,7 @@ class ProdutoController extends AbstractController
             $em->flush();
             $msg = "Produto salvo";
         } catch (\Exception $e) {
-            $msg = "Erro produtp: " . $e->getMessage();
+            $msg = "Erro produto: " . $e->getMessage();
         }
         
         return new Response("<h1>" . $msg . "</h1>");
