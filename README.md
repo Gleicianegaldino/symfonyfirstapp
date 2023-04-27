@@ -9,3 +9,9 @@
 
 ![categoria-adicionar](https://user-images.githubusercontent.com/78940661/234728894-b11be033-a3ce-4be3-a7ee-21c8cb5d47ee.png)
 ![categoria](https://user-images.githubusercontent.com/78940661/234728899-cf26b419-e51a-4b9f-a388-05ec548a9b37.png)
+
+
+### CRUD Produto (26/04)
+
+![adicionar-produto](https://user-images.githubusercontent.com/78940661/234735811-2ab421aa-e4e4-4ab7-b569-2c51a5ef7d7f.png)
+![produto](https://user-images.githubusercontent.com/78940661/234735823-aab2c15b-1899-4b74-b83e-8ed93a7945b6.png)
