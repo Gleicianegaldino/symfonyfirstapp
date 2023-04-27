@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %} 
+{% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ titulo }}
+	{{ titulo }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ titulo }}</h1>
+	<div class="container d-flex justify-content-center align-items-center mt-4 mb-2">
+		<h1>{{ titulo }}   </h1>
 
-    {{ form(form) }}
-{% endblock %}
+	</div>
+{{ form(form) }}{% endblock %}
+
+
+	

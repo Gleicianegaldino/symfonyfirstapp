@@ -4,43 +4,67 @@ namespace App\Controller;
 
 use App\Entity\Produto;
 use App\Form\ProdutoType;
-use App\Repository\CategoriaRepository;
+use App\Repository\ProdutoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-
 
 class ProdutoController extends AbstractController
 {
-    public function index(EntityManagerInterface $em, CategoriaRepository $categoriaRepository)
+    public function index(EntityManagerInterface $em, ProdutoRepository $produtoRepository)
     {
-        $categoria = $categoriaRepository->find(1);
-        $produto = new Produto;
-        $produto->setNomeproduto("Notebook");
-        $produto->setValor(3000);
-        $produto->setCategoria($categoria);
-
-        $msg = "";
         
-        try {
+        $data['produtos'] = $produtoRepository->findAll();
+        $data['titulo'] = 'Gerenciar Produtos';
+
+        return $this->render("produto/index.html.twig", $data);
+    }
+
+    public function adicionar(Request $request, EntityManagerInterface $em): Response
+    {
+        $produto = new Produto();
+        $form = $this->createForm(ProdutoType::class, $produto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+          
             $em->persist($produto);
             $em->flush();
-            $msg = "Produto salvo";
-        } catch (\Exception $e) {
-            $msg = "Erro produto: " . $e->getMessage();
+
+            return $this->redirectToRoute('produto');
         }
-        
-        return new Response("<h1>" . $msg . "</h1>");
+
+        $data['titulo'] = "Adicionar novo produto";
+        $data['form'] = $form;
+
+        return $this->renderForm('produto/form.html.twig', $data);
     }
-    
-        public function adicionar() : Response
-        {
-            $form = $this->createForm(ProdutoType::class);
-            
-            $data['titulo'] = 'Adicionar novo produto';   
-            $data['form'] = $form;
+    public function editar($id, Request $request, EntityManagerInterface $em, ProdutoRepository $produtoRepository): Response
+    {
+        $produto = $produtoRepository->find($id);
+        $form = $this->createForm(ProdutoType::class, $produto);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
            
-            return $this->renderForm('produto/form.html.twig', $data);
+            $em->persist($produto);
+            $em->flush();
+
+            return $this->redirectToRoute('produto');
         }
+
+        $data['titulo'] = "Editar novo produto";
+        $data['form'] = $form;
+
+        return $this->renderForm('produto/form.html.twig', $data);
+    }
+    public function excluir($id, EntityManagerInterface $em, ProdutoRepository $produtoRepository): Response
+    {
+        $produto = $produtoRepository->find($id); 
+        $em->remove($produto); 
+        $em->flush(); 
+
+        return $this->redirectToRoute('produto');
+    }
 }

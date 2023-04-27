@@ -21,12 +21,19 @@ categoria_excluir:
 
 
 #### Produto ####
-
 produto:
-    path: /produto
-    controller: App\Controller\ProdutoController::index
+  path: /produto
+  controller: App\Controller\ProdutoController::index
 
-produtoadicionar:
-    path: /produto/adicionar
-    controller: App\Controller\ProdutoController::adicionar
+produto_adicionar:
+  path: /produto/adicionar
+  controller: App\Controller\ProdutoController::adicionar
 
+produto_editar:
+  path: /produto/editar/{id}
+  controller: App\Controller\ProdutoController::editar
+
+
+produto_excluir:
+  path: /produto/excluir/{id}
+  controller: App\Controller\ProdutoController::excluir

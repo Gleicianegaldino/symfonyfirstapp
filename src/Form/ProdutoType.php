@@ -20,7 +20,7 @@ class ProdutoType extends AbstractType
             
             ->add('valor', TextType::class, ['label' => 'Valor: '])
 
-            ->add('categoria_id', EntityType::class,['class' => Categoria::class,
+            ->add('categoria', EntityType::class,['class' => Categoria::class,
             'choice_label' => 'descricaocategoria',
             'label' => 'Categoria: '
             ])
