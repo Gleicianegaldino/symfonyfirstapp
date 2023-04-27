@@ -33,30 +33,37 @@ class CategoriaController extends AbstractController
             $em->flush();
         }
 
-        $data['titulo'] = 'Adicionar nova categoria';
+        $data['titulo'] = 'Adicione uma nova categoria';
         $data['form'] = $form;
 
         return $this->renderForm('categoria/form.html.twig', $data);
     }
 
-    public function editar($id, Request $request, EntityManagerInterface $em, CategoriaRepository $categoriaRepository) : Response
+    public function editar($id, Request $request, EntityManagerInterface $em, CategoriaRepository $categoriaRepository): Response
     {
-        $msg ="";
+        $msg = "";
         $categoria = $categoriaRepository->find($id);
         $form = $this->createForm(CategoriaType::class, $categoria);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em->flush();
-            $msg = 'Produto atualizado';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush(); 
+            $msg = "Categoria atualizada!";
+            return $this->redirectToRoute('categoria');
         }
-
-        $data['titulo'] = 'Editar categoria';
-        $data['form']= $form;
+        $data['titulo'] = "Editar categoria";
+        $data['form'] = $form;
         $data['msg'] = $msg;
 
-        return $this->renderForm('categoria/form.html.twig');
-        
+        return $this->renderForm('categoria/form.html.twig', $data);
+    }
+
+    public function excluir($id, EntityManagerInterface $em, CategoriaRepository $categoriaRepository): Response
+    {
+        $categoria = $categoriaRepository->find($id); 
+        $em->remove($categoria); 
+        $em->flush();
+
+        return $this->redirectToRoute('categoria');
     }
 }

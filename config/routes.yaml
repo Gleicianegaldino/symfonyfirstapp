@@ -2,25 +2,31 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-
+##### categoria #####
 categoria:
     path: /categoria
     controller: App\Controller\CategoriaController::index
 
-categoriadicionar:
-    path: /categoriaadicionar
+categoria_adicionar:
+    path: /categoria/adicionar
     controller: App\Controller\CategoriaController::adicionar
 
-categoriaeditar:
-    path: /categoriaeditar/{id}
+categoria_editar:
+    path: /categoria/editar/{id}
     controller: App\Controller\CategoriaController::editar
 
+categoria_excluir:
+    path: /categoria/excluir/{id}
+    controller: App\Controller\CategoriaController::excluir
+
+
+#### Produto ####
 
 produto:
     path: /produto
     controller: App\Controller\ProdutoController::index
 
 produtoadicionar:
-    path: /produtoadicionar
+    path: /produto/adicionar
     controller: App\Controller\ProdutoController::adicionar
 
