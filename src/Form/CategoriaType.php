@@ -19,10 +19,12 @@ class CategoriaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options )
     {
         $builder
-        ->add('descricaocategoria', TextType::class, [
+        ->add('descricaocategoria', TextType::class, 
+        [
              'required' => false,
             'label' => 'Descrição da categoria: ',
-            'constraints' => [
+            'constraints' => 
+            [
                 new Length([
                     'min' => 5,
                     'max' => 50,
@@ -32,7 +34,7 @@ class CategoriaType extends AbstractType
                  new NotBlank([
                     'message' => 'Não pode ser nulo.'
                  ])
-                ]
+            ]
         ])
         ->add('Salvar', SubmitType::class);
     }

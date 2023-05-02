@@ -2,6 +2,14 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+#hello:
+#    path: /hello
+#    controller: App\Controller\HelloController::index
+
+teste:
+    path: /teste
+    controller: App\Controller\TesteController::hello
+
 ##### categoria #####
 categoria:
     path: /categoria
@@ -37,3 +45,15 @@ produto_editar:
 produto_excluir:
   path: /produto/excluir/{id}
   controller: App\Controller\ProdutoController::excluir
+
+register:
+  path: /register
+  controller: App\Controller\RegistrationController::register
+
+login:
+  path: /login
+  controller: App\Controller\LoginController::index
+
+logout:
+  path: /logout
+  methods: GET

@@ -9,11 +9,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CategoriaController extends AbstractController
 {
+
+   
     public function index(CategoriaRepository $categoriaRepository) : Response
     {
+        //restringir a pagina apenas aos ROLES_USER
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $data['categorias'] = $categoriaRepository->findAll();
         $data['titulo'] = 'Gerenciar Categorias';
 
