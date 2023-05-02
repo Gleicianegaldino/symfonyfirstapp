@@ -9,6 +9,11 @@
 		<h1>{{ titulo }}</h1>
 
 		<a href="{{ path('produto_adicionar') }}" class="btn btn-primary py-2 px-md-3"> Adicionar</a>
+		<form method="get">
+			<label>Pesquisar pelo nome: </label>
+			<input type="text" name="nome" class="form-control" value="{{ nomeproduto }}"/>
+			<button type="submit" class="btn btn-primary" style="margin-top: 5px">Pesquisar </button>
+		</form>
 	</div>
 	<table class="table">
 		<thead>

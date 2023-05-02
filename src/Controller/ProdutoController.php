@@ -12,12 +12,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProdutoController extends AbstractController
 {
-    public function index(EntityManagerInterface $em, ProdutoRepository $produtoRepository)
+    public function index(Request $request, EntityManagerInterface $em, ProdutoRepository $produtoRepository)
     {
+        $nomeproduto = $request->query->get('nome');
         //restringir a pagina apenas aos ROLES_USER
         $this->denyAccessUnlessGranted('ROLE_USER');
         
-        $data['produtos'] = $produtoRepository->findAll();
+        $data['produtos'] = is_null($nomeproduto)
+                            ? $produtoRepository->findAll()
+                            : $produtoRepository->findProdutoByLikeNome($nomeproduto);
+        //$produtoRepository->findAll();
+        $data['nomeproduto'] = $nomeproduto;
         $data['titulo'] = 'Gerenciar Produtos';
 
         return $this->render("produto/index.html.twig", $data);
