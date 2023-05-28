@@ -57,3 +57,11 @@ login:
 logout:
   path: /logout
   methods: GET
+
+
+############ Api  #####3
+
+api_produtos:
+    path: /api/produtos
+    controller: App\Controller\ApiController::produtos
+    methods: [GET]
